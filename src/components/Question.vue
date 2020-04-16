@@ -17,7 +17,7 @@
                   <button class="btn btn-lg btn-danger btn-block text-uppercase font-weight-bold">{{ questions[0].choices[2].choice }}</button>
               </div>
               <div class="row" id="d">
-                  <button class="btn btn-lg btn-warning btn-block text-uppercase font-weight-bold">{{ questions[0].choices[3].choice }}</button>
+                  <button @click="jawab('d')" class="btn btn-lg btn-warning btn-block text-uppercase font-weight-bold">{{ questions[0].choices[3].choice }}</button>
               </div>
           </div>
       </div>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+// import socket from '../config/socket'
 export default {
   data () {
     return {
