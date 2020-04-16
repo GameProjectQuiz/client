@@ -1,24 +1,20 @@
 <template>
-  <div class="container align-items-center justify-content-center">
-      <div class="row justify-content-center">
-        <img src="../assets/yahoot.png">
+  <div class="container">
+    <form>
+      <div class="form-group">
+        <p>{{ users }}</p>
+        <label for="username">Username</label>
+        <input v-model="username" type="text" class="form-control" id="username" required autofocus>
       </div>
-      <h3>- Game Paling Yahud -</h3>
-      <div class="row justify-content-center">
-        <form class="col-5 " @submit.prevent='login'>
-          <div class="form-group">
-            <p>{{ users }}</p>
-            <label for="username">Username</label>
-            <input v-model="username" type="text" class="form-control" id="username" required autofocus>
-          </div>
-          <button type="submit" class="btn btn-danger">Enter Game</button>
-        </form>
-      </div>
+      <div @click.prevent="login"><router-link to="/lobby" tag="button" class="btn btn-primary">Enter Game</router-link></div>
+      <!-- <button type="submit" >Enter Game</button> -->
+    </form>
   </div>
 </template>
 
 <script>
 import socket from '../config/socket'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Home',
@@ -29,14 +25,28 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['CHANGE_CURRENTPLAYER', 'CHANGE_PLAYER']),
     login () {
       localStorage.setItem('username', this.username)
       const data = {
-        name: this.username
+        id: `${this.username}-${new Date().toISOString()}`,
+        name: this.username,
+        status: 'Waiting'
       }
+      this.CHANGE_CURRENTPLAYER(data)
       socket.emit('user-connect', data)
-      this.$router.push('/lobby')
+      
+      // mau lempar ke halaman apa?
+      // this.$router.push('/kemana')
     }
+  },
+  created () {
+    socket.on('user-connect', data => {
+      this.users = data
+    })
+    socket.on('stateNewPlayer', (data) => {
+        this.CHANGE_PLAYER(data)
+      })
   }
 }
 </script>
