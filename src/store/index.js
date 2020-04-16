@@ -7,12 +7,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     player: [],
-    currentPlayer: {}
+    currentPlayer: {},
+    startTimer: 10
   },
   mutations: {
-    CHANGE_STATUS(state, payload) {
+    CHANGE_STATUS (state, payload) {
       state.player.forEach(el => {
-        if (el.id == payload.id) {
+        if (el.id === payload.id) {
           el.status = payload.status
         }
       })
@@ -24,6 +25,10 @@ export default new Vuex.Store({
     CHANGE_PLAYER (state, payload) {
       state.player = []
       state.player = payload
+      state.startTimer = 10
+    },
+    DECREMENT_STARTTIMER (state, payload) {
+        state.startTimer = payload
     }
   },
   actions: {

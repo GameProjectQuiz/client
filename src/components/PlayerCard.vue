@@ -5,7 +5,7 @@
     <h5 class="card-title">{{name}}</h5>
     <div class="d-flex justify-content-center align-items-center" v-if="getCurrentPlayer.id == id">
         <a href="#" @click.prevent="ready" class="btn btn-primary form-control m-1" >Ready</a>
-        <a href="#" @click.prevent="cancel" class="btn btn-info form-control m-1" >Cancel</a>
+        <!-- <a href="#" @click.prevent="cancel" class="btn btn-info form-control m-1" >Cancel</a> -->
     </div>
   </div>
 </div>
@@ -14,53 +14,53 @@
 <script>
 import { mapMutations } from 'vuex'
 export default {
-    name: 'PlayerCard',
-    props: ['name', 'status', 'id'],
-    data() {
-        return {
-        }
-    },
-    methods: {
-        ...mapMutations(['CHANGE_STATUS']),
-        ready() {
-            this.CHANGE_STATUS({
-                id: this.id,
-                status: 'Ready'
-            })
-        },
-        cancel() {
-            this.CHANGE_STATUS({
-                id: this.id,
-                status: 'Waiting'
-            })
-        }
-    },
-    computed: {
-        cardHeaderReady() {
-            if (this.status == 'Ready') {
-                return {
-                    width: '18.4rem',
-                    height: '50px',
-                    'background-color': 'yellow',
-                    color: 'white',
-                    'font-size': '24px',
-                    'font-weight': '900'
-                }
-            } else {
-                return {
-                    width: '18.4rem',
-                    height: '50px',
-                    'background-color': 'grey',
-                    color: 'white',
-                    'font-size': '24px',
-                    'font-weight': '900'
-                }
-            }
-        },
-        getCurrentPlayer() {
-            return this.$store.state.currentPlayer
-        }
+  name: 'PlayerCard',
+  props: ['name', 'status', 'id'],
+  data () {
+    return {
     }
+  },
+  methods: {
+    ...mapMutations(['CHANGE_STATUS']),
+    ready () {
+      this.CHANGE_STATUS({
+        id: this.id,
+        status: 'Ready'
+      })
+    },
+    cancel () {
+      this.CHANGE_STATUS({
+        id: this.id,
+        status: 'Waiting'
+      })
+    }
+  },
+  computed: {
+    cardHeaderReady () {
+      if (this.status == 'Ready') {
+        return {
+          width: '18.4rem',
+          height: '50px',
+          'background-color': 'yellow',
+          color: 'white',
+          'font-size': '24px',
+          'font-weight': '900'
+        }
+      } else {
+        return {
+          width: '18.4rem',
+          height: '50px',
+          'background-color': 'grey',
+          color: 'white',
+          'font-size': '24px',
+          'font-weight': '900'
+        }
+      }
+    },
+    getCurrentPlayer () {
+      return this.$store.state.currentPlayer
+    }
+  }
 }
 </script>
 
