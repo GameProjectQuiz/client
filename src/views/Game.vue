@@ -1,8 +1,5 @@
 <template>
   <div class="container">
-      <!-- <div class="progress">
-  <div class="progress-bar w-75" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-</div> -->
     <div class="progress">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" :style="progress"></div>
     </div>
@@ -22,12 +19,12 @@ export default {
     question
   },
   computed: {
-    progress() {
-        return `width: ${this.$store.state.startTimer}%`
+    progress () {
+      return `width: ${this.$store.state.startTimer}%`
     }
   },
-  created() {
-      this.SET_STARTTIMER()
+  created () {
+    this.SET_STARTTIMER()
   }
 }
 </script>
