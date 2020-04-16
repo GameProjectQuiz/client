@@ -1,18 +1,42 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <form @submit.prevent='login'>
+      <div class="form-group">
+        <p>{{ users }}</p>
+        <label for="username">Username</label>
+        <input v-model="username" type="text" class="form-control" id="username" required autofocus>
+      </div>
+      <button type="submit" class="btn btn-primary">Enter Game</button>
+    </form>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import socket from '../config/socket'
 
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  data () {
+    return {
+      username: '',
+      users: []
+    }
+  },
+  methods: {
+    login () {
+      localStorage.setItem('username', this.username)
+      const data = {
+        name: this.username
+      }
+      socket.emit('user-connect', data)
+      // mau lempar ke halaman apa?
+      // this.$router.push('/kemana')
+    }
+  },
+  created () {
+    socket.on('user-connect', data => {
+      this.users = data
+    })
   }
 }
 </script>
