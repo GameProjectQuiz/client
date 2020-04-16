@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from 'vue'
 import Vuex from 'vuex'
 
@@ -10,7 +11,7 @@ export default new Vuex.Store({
         id: 1,
         name: 'robin',
         status: 'Waiting'
-      },
+    },
       {
         id: 2,
         name: 'fauzan',
