@@ -28,10 +28,9 @@ export default {
   computed: {
     players () {
       return this.$store.state.player
-      
     },
-    timer() {
-      return this.$store.state.startTimer 
+    timer () {
+      return this.$store.state.startTimer
     }
   },
   created () {
