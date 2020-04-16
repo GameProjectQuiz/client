@@ -3,7 +3,7 @@
   <div class="headerCard d-flex justify-content-center align-items-center" :style="cardHeaderReady">{{status}}</div>
   <div class="card-body">
     <h5 class="card-title">{{name}}</h5>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center" v-if="getCurrentPlayer.id == id">
         <a href="#" @click.prevent="ready" class="btn btn-primary form-control m-1" >Ready</a>
         <a href="#" @click.prevent="cancel" class="btn btn-info form-control m-1" >Cancel</a>
     </div>
@@ -56,6 +56,9 @@ export default {
                     'font-weight': '900'
                 }
             }
+        },
+        getCurrentPlayer() {
+            return this.$store.state.currentPlayer
         }
     }
 }
