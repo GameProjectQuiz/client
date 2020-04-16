@@ -1,7 +1,7 @@
 /* eslint-disable */
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import socket from '../config/socket'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -16,6 +16,7 @@ export default new Vuex.Store({
           el.status = payload.status
         }
       })
+      socket.emit('changeStatus', state.player)
     },
     CHANGE_CURRENTPLAYER (state, payload) {
       state.currentPlayer = payload

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="gameOn">
     <form>
       <div class="form-group">
         <p>{{ users }}</p>
@@ -21,7 +21,8 @@ export default {
   data () {
     return {
       username: '',
-      users: []
+      users: [],
+      gameOn: false
     }
   },
   methods: {
@@ -40,6 +41,11 @@ export default {
     }
   },
   created () {
+    socket.emit('gameOn')
+    socket.on('gameOn', (data) => {
+      console.log(data)
+      this.gameOn = data
+    })
     socket.on('user-connect', data => {
       this.users = data
     })
