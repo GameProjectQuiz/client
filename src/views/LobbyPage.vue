@@ -13,10 +13,6 @@ import PlayerCard from '../components/PlayerCard'
 import socket from '../config/socket'
 import { mapMutations } from 'vuex'
 export default {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  name: 'LobbyPage',
-=======
   name: 'LobbyPage',
   data () {
     return {
@@ -26,38 +22,13 @@ export default {
   methods: {
     ...mapMutations(['DECREMENT_STARTTIMER'])
   },
->>>>>>> 318b94a9433e79aac07a7e1d289fe22eadc56336
   components: {
     PlayerCard
   },
   computed: {
     players () {
       return this.$store.state.player
-<<<<<<< HEAD
-=======
-    name: 'LobbyPage',
-    data () {
-      return{
-        users: []
-        }
-    },
-    components: {
-        PlayerCard
-    },
-    computed: {
-        players() {
-            return this.$store.state.player
-        }
-    },
-    created() {
-        socket.on('user-connect', data => {
-            this.users = data
-        })
->>>>>>> a69d9d080d2dfd6efc45166b25feeac2c5b4592b
-    }
-  },
-  created () {
-=======
+      
     },
     timer() {
       return this.$store.state.startTimer 
@@ -70,7 +41,6 @@ export default {
     socket.on('startTimer', (time) => {
       this.DECREMENT_STARTTIMER(time)
     })
->>>>>>> 318b94a9433e79aac07a7e1d289fe22eadc56336
   }
 }
 </script>

@@ -37,10 +37,6 @@ export default {
       }
       this.CHANGE_CURRENTPLAYER(data)
       socket.emit('user-connect', data)
-<<<<<<< HEAD
-=======
-
->>>>>>> 318b94a9433e79aac07a7e1d289fe22eadc56336
       // mau lempar ke halaman apa?
       // this.$router.push('/kemana')
     }
