@@ -10,17 +10,17 @@
 <script>
 import PlayerCard from '../components/PlayerCard'
 export default {
-    name: 'LobbyPage',
-    components: {
-        PlayerCard
-    },
-    computed: {
-        players() {
-            return this.$store.state.player
-        }
-    },
-    created() {
+  name: 'LobbyPage',
+  components: {
+    PlayerCard
+  },
+  computed: {
+    players () {
+      return this.$store.state.player
     }
+  },
+  created () {
+  }
 }
 </script>
 

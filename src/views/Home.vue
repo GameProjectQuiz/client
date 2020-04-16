@@ -1,18 +1,20 @@
 <template>
   <div class="container">
-    <form @submit.prevent='login'>
+    <form>
       <div class="form-group">
         <p>{{ users }}</p>
         <label for="username">Username</label>
         <input v-model="username" type="text" class="form-control" id="username" required autofocus>
       </div>
-      <button type="submit" class="btn btn-primary">Enter Game</button>
+      <div @click.prevent="login"><router-link to="/lobby" tag="button" class="btn btn-primary">Enter Game</router-link></div>
+      <!-- <button type="submit" >Enter Game</button> -->
     </form>
   </div>
 </template>
 
 <script>
 import socket from '../config/socket'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Home',
@@ -23,11 +25,15 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['CHANGE_CURRENTPLAYER', 'CHANGE_PLAYER']),
     login () {
       localStorage.setItem('username', this.username)
       const data = {
-        name: this.username
+        id: `${this.username}-${new Date().toISOString()}`,
+        name: this.username,
+        status: 'Waiting'
       }
+      this.CHANGE_CURRENTPLAYER(data)
       socket.emit('user-connect', data)
       // mau lempar ke halaman apa?
       // this.$router.push('/kemana')
@@ -36,6 +42,9 @@ export default {
   created () {
     socket.on('user-connect', data => {
       this.users = data
+    })
+    socket.on('stateNewPlayer', (data) => {
+      this.CHANGE_PLAYER(data)
     })
   }
 }
