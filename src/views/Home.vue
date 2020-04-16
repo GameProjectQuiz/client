@@ -36,7 +36,7 @@ export default {
       }
       this.CHANGE_CURRENTPLAYER(data)
       socket.emit('user-connect', data)
-      
+
       // mau lempar ke halaman apa?
       // this.$router.push('/kemana')
     }
@@ -51,8 +51,8 @@ export default {
       this.users = data
     })
     socket.on('stateNewPlayer', (data) => {
-        this.CHANGE_PLAYER(data)
-      })
+      this.CHANGE_PLAYER(data)
+    })
   }
 }
 </script>
