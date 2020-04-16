@@ -1,16 +1,33 @@
 <template>
   <div class="container">
-      <question />
+      <!-- <div class="progress">
+  <div class="progress-bar w-75" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+</div> -->
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" :style="progress"></div>
+    </div>
+    <question />
   </div>
 </template>
 
 <script>
 import question from '@/components/Question'
-
+import { mapMutations } from 'vuex'
 export default {
   name: 'GamePage',
+  methods: {
+    ...mapMutations(['SET_STARTTIMER'])
+  },
   components: {
     question
+  },
+  computed: {
+    progress() {
+        return `width: ${this.$store.state.startTimer}%`
+    }
+  },
+  created() {
+      this.SET_STARTTIMER()
   }
 }
 </script>

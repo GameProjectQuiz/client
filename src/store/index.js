@@ -18,6 +18,9 @@ export default new Vuex.Store({
       })
       socket.emit('changeStatus', state.player)
     },
+    SET_STARTTIMER (state) {
+      state.startTimer = 0
+    },
     CHANGE_CURRENTPLAYER (state, payload) {
       state.currentPlayer = payload
     },
