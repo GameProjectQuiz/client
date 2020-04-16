@@ -1,6 +1,7 @@
 <template>
   <div class="LobbyPage d-flex flex-column align-items-center justify-content-center">
       <h1>LOBBY</h1>
+      <h3>{{ users }}</h3>
       <div class="board bg-light p-2 d-flex flex-wrap align-items-start justify-content-center" style="overflow: scroll;">
           <PlayerCard v-for="player in players" :key="player.id" :name="player.name" :status="player.status" :id="player.id"></PlayerCard>
       </div>
@@ -10,6 +11,7 @@
 <script>
 import PlayerCard from '../components/PlayerCard'
 export default {
+<<<<<<< HEAD
   name: 'LobbyPage',
   components: {
     PlayerCard
@@ -17,6 +19,26 @@ export default {
   computed: {
     players () {
       return this.$store.state.player
+=======
+    name: 'LobbyPage',
+    data () {
+      return{
+        users: []
+        }
+    },
+    components: {
+        PlayerCard
+    },
+    computed: {
+        players() {
+            return this.$store.state.player
+        }
+    },
+    created() {
+        socket.on('user-connect', data => {
+            this.users = data
+        })
+>>>>>>> a69d9d080d2dfd6efc45166b25feeac2c5b4592b
     }
   },
   created () {
