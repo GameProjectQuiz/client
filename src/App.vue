@@ -1,13 +1,10 @@
 <template>
-  <div id="app">
-<<<<<<< HEAD
+  <div class= "justify-content-center" id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
+      <router-link to="/lobby">Lobby</router-link> |
       <router-link to="/game">Game</router-link>
     </div>
-=======
->>>>>>> dd59519cce89ffa25743c9ad0ee8bd61e39daacc
     <router-view/>
   </div>
 </template>

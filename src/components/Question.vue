@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="row text-uppercase font-weight-bold" id="question">
-          {{ questions[0].question }}
+          <h1>{{ questions[0].question }}</h1>
       </div>
       <div class="row" id="answers">
           <div class="col">
