@@ -4,7 +4,7 @@
   <div class="card-body">
     <h5 class="card-title">{{name}}</h5>
     <div class="d-flex justify-content-center align-items-center" v-if="getCurrentPlayer.id == id">
-        <a href="#" @click.prevent="ready" class="btn btn-primary form-control m-1" >Ready</a>
+        <a href="#" id='hide' @click.prevent="ready" class="btn btn-primary form-control m-1" >Ready</a>
         <!-- <a href="#" @click.prevent="cancel" class="btn btn-info form-control m-1" >Cancel</a> -->
     </div>
   </div>
@@ -18,11 +18,13 @@ export default {
   props: ['name', 'status', 'id'],
   data () {
     return {
+      isHidden: false
     }
   },
   methods: {
     ...mapMutations(['CHANGE_STATUS']),
     ready () {
+      document.getElementById('hide').style.display = 'none'
       this.CHANGE_STATUS({
         id: this.id,
         status: 'Ready'
@@ -37,11 +39,11 @@ export default {
   },
   computed: {
     cardHeaderReady () {
-      if (this.status == 'Ready') {
+      if (this.status === 'Ready') {
         return {
           width: '18.4rem',
           height: '50px',
-          'background-color': 'yellow',
+          'background-color': 'green',
           color: 'white',
           'font-size': '24px',
           'font-weight': '900'

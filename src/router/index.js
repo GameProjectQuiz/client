@@ -10,16 +10,19 @@ const routes = [
   {
     path: '/',
     name: 'Home',
+    // beforeEnter: checkToken,
     component: Home
   },
   {
     path: '/game',
     name: 'Game',
+    beforeEnter: guard,
     component: Game
   },
   {
     path: '/lobby',
     name: 'Lobby',
+    beforeEnter: guard,
     component: LobbyPage
   }
 ]
@@ -29,5 +32,21 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+function guard (to, from, next) {
+  if (localStorage.username) {
+    next()
+  } else {
+    next('/')
+  }
+}
+
+// function checkToken (to, from, next) {
+//   if (localStorage.username) {
+//     next('/lobby')
+//   } else {
+//     next()
+//   }
+// }
 
 export default router
