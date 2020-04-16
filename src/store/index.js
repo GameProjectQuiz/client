@@ -8,7 +8,9 @@ export default new Vuex.Store({
   state: {
     player: [],
     currentPlayer: {},
-    startTimer: 10
+    startTimer: 10,
+    currentQuest: {},
+    currentScore: []
   },
   mutations: {
     CHANGE_STATUS (state, payload) {
@@ -31,8 +33,12 @@ export default new Vuex.Store({
       state.startTimer = 10
     },
     DECREMENT_STARTTIMER (state, payload) {
-        state.startTimer = payload
+      state.startTimer = payload
+    },
+    CHANGE_QUESTION (state, payload) {
+      state.currentQuest = payload
     }
+    
   },
   actions: {
   },
