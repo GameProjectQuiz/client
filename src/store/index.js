@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     player: [],
     currentPlayer: {},
-    startTimer: 10
+    startTimer: 10,
+    questionData
   },
   mutations: {
     CHANGE_STATUS (state, payload) {
