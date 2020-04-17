@@ -30,6 +30,7 @@ export default {
     ...mapMutations(['CHANGE_STATUS']),
     home() {
       this.$router.push('/')
+      this.CHANGE_FINISHED(false)
     },
     ready () {
       document.getElementById('hide').style.display = 'none'
