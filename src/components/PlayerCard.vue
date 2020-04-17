@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     ...mapMutations(['CHANGE_STATUS']),
-    home() {
+    home () {
       this.$router.push('/')
       this.CHANGE_FINISHED(false)
     },
@@ -47,7 +47,7 @@ export default {
     }
   },
   computed: {
-    ranking() {
+    ranking () {
       return `#${this.rank + 1}`
     },
     cardHeaderReady () {
