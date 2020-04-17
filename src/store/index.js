@@ -10,7 +10,8 @@ export default new Vuex.Store({
     currentPlayer: {},
     startTimer: 10,
     currentQuest: {},
-    currentScore: []
+    currentScore: [],
+    isAnswer:false
   },
   mutations: {
     CHANGE_STATUS (state, payload) {
@@ -37,6 +38,10 @@ export default new Vuex.Store({
     },
     CHANGE_QUESTION (state, payload) {
       state.currentQuest = payload
+      // state.isAnswer = true
+    },
+    CHANGE_ISANSWER (state,payload) {
+      state.isAnswer = payload
     }
     
   },

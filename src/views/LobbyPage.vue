@@ -40,6 +40,7 @@ export default {
   created () {
     socket.on('startGame', () => {
       this.$router.push('/game')
+      this.$store.commit('CHANGE_ISANSWER', false)
     })
     socket.on('startTimer', (time) => {
       this.DECREMENT_STARTTIMER(time)

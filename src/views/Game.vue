@@ -36,6 +36,7 @@ export default {
     this.SET_STARTTIMER()
     socket.on('send-data', (data) => {
       this.CHANGE_QUESTION(data)
+      this.$store.commit('CHANGE_ISANSWER', false)
       console.log(this.currentQuest)
     })
   }

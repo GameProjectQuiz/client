@@ -3,7 +3,7 @@
       <div class="row text-uppercase font-weight-bold board align-items-center justify-content-center" id="question">
           <h1>{{ quest.question }}</h1>
       </div>
-      <div class="row  align-self-stretch m-2" id="answers" >
+      <div class="row  align-self-stretch m-2" id="answers" v-if="!isAnswer">
           <div class="col">
               <div class="row m-2" :id="quest.choices[0].id">
                   <button @click.prevent="answer(quest.choices[0].choice)" class="btn btn-lg btn-primary btn-block text-uppercase font-weight-bold">{{ quest.choices[0].choice }}</button>
@@ -35,8 +35,8 @@ export default {
         questId: this.quest.id,
         choice,
         time: this.getTime
-
       })
+      this.$store.commit('CHANGE_ISANSWER', true)
     }
   },
   computed: {
@@ -45,6 +45,10 @@ export default {
     },
     getTime () {
       return this.$store.state.startTimer
+    },
+    isAnswer() {
+      console.log(this.$store.state.isAnswer)
+      return this.$store.state.isAnswer
     }
   },
   data () {
@@ -54,6 +58,9 @@ export default {
   created () {
     console.log(this.quest)
     console.log(this.currentPlayer)
+  },
+  beforeCreate() {
+    this.$store.commit('CHANGE_ISANSWER', false)
   }
 }
 </script>
