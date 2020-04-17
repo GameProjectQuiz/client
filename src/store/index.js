@@ -12,7 +12,8 @@ export default new Vuex.Store({
     currentQuest: {},
     currentScore: [],
     isAnswer:false,
-    gameOn: true
+    gameOn: true,
+    finished: false
   },
   mutations: {
     CHANGE_STATUS (state, payload) {
@@ -46,6 +47,9 @@ export default new Vuex.Store({
     },
     CHANGE_GAMEON (state, payload) {
       state.gameOn = payload
+    },
+    CHANGE_FINISHED (state, payload) {
+      state.finished = payload
     }
     
   },

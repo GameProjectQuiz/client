@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Game from '../views/Game.vue'
 import LobbyPage from '../views/LobbyPage.vue'
+import ScoreBoard from '../views/ScoreBoard.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,12 @@ const routes = [
     name: 'Lobby',
     beforeEnter: guard,
     component: LobbyPage
+  },
+  {
+    path: '/result',
+    name: 'Result',
+    beforeEnter: guard,
+    component: ScoreBoard
   }
 ]
 
