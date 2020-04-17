@@ -1,9 +1,13 @@
 <template>
   <div class="card m-2" style="width: 18.5rem; border-radius:10px;">
   <div class="headerCard d-flex justify-content-center align-items-center" :style="cardHeaderReady" v-if="!finished" >{{status}}</div>
-  <div class="card-body">
+  <div class="headerCard d-flex justify-content-center align-items-center" :style="cardHeaderReady" v-if="finished" >{{ranking}}</div>
+  <div class="card-body d-flex flex-column justify-content-center align-items-center">
     <h5 class="card-title">{{name}}</h5>
-    <h5 class="card-title" v-if="finished">{{score}}</h5>
+    <div class="d-flex justify-content-center align-items-center" v-if="getCurrentPlayer.id == id && finished">
+        <a href="#" id='hide' @click.prevent="home" class="btn btn-primary form-control m-1" >{{score}}</a>
+        <!-- <a href="#" @click.prevent="cancel" class="btn btn-info form-control m-1" >Cancel</a> -->
+    </div>
     <div class="d-flex justify-content-center align-items-center" v-if="getCurrentPlayer.id == id && !finished">
         <a href="#" id='hide' @click.prevent="ready" class="btn btn-primary form-control m-1" >Ready</a>
         <!-- <a href="#" @click.prevent="cancel" class="btn btn-info form-control m-1" >Cancel</a> -->
@@ -16,7 +20,7 @@
 import { mapMutations } from 'vuex'
 export default {
   name: 'PlayerCard',
-  props: ['name', 'status', 'id', 'finished', 'score'],
+  props: ['name', 'status', 'id', 'finished', 'score', 'rank'],
   data () {
     return {
       isHidden: false
@@ -24,6 +28,9 @@ export default {
   },
   methods: {
     ...mapMutations(['CHANGE_STATUS']),
+    home() {
+      this.$router.push('/')
+    },
     ready () {
       document.getElementById('hide').style.display = 'none'
       this.CHANGE_STATUS({
@@ -39,6 +46,9 @@ export default {
     }
   },
   computed: {
+    ranking() {
+      return `#${this.rank + 1}`
+    },
     cardHeaderReady () {
       if (this.status === 'Ready') {
         return {
