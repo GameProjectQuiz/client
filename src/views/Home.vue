@@ -1,6 +1,11 @@
 <template>
   <div class="container" v-if="gameOn">
     <div class="row justify-content-center mt-5 mb-5">
+      <!-- <iframe src="../assets/kahoot-ori.mp3" type="audio/mp3" allow="autoplay" id="audio" style="display:none"></iframe> -->
+      <audio autoplay loop hidden>
+      <source src="../assets/kahoot-ori.mp3">
+                If you're reading this, audio isn't supported.
+      </audio>
       <img src="../assets/yahoot.png">
     </div>
     <div class="row justify-content-center">
@@ -36,7 +41,7 @@ export default {
         id: `${this.username}-${new Date().toISOString()}`,
         name: this.username,
         status: 'Waiting',
-        score: 0,
+        score: 0
       }
       this.CHANGE_CURRENTPLAYER(data)
       socket.emit('user-connect', data)
