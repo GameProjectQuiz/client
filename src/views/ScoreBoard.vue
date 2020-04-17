@@ -20,9 +20,10 @@ import { mapMutations } from 'vuex'
 export default {
   name: 'ScoreBoard',
   methods: {
+    ...mapMutations(['CLEAR_ALL']),
     clearing () {
-      localStorage.removeItem('username')
-      this.$router.push('/')
+        socket.emit('clear-all-client')
+        // localStorage.removeItem('username')
     }
   },
   computed: {
@@ -32,6 +33,13 @@ export default {
   },
   components: {
     PlayerCard
+  },
+  created() {
+      socket.on('clear-all-client', () => {
+        this.CLEAR_ALL()
+        this.$router.push('/')
+
+      })
   }
 }
 </script>

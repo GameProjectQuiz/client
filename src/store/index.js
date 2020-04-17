@@ -50,6 +50,16 @@ export default new Vuex.Store({
     },
     CHANGE_FINISHED (state, payload) {
       state.finished = payload
+    },
+    CLEAR_ALL (state) {
+    state.player = []
+    state.currentPlayer = {}
+    state.startTimer = 10
+    state.currentQuest = {}
+    state.currentScore = []
+    state.isAnswer =false
+    state.gameOn = true
+    state.finished = false
     }
   },
   actions: {

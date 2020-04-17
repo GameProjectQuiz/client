@@ -4,8 +4,8 @@
   <div class="headerCard d-flex justify-content-center align-items-center" :style="cardHeaderReady" v-if="finished" >{{ranking}}</div>
   <div class="card-body d-flex flex-column justify-content-center align-items-center">
     <h5 class="card-title">{{name}}</h5>
-    <div class="d-flex justify-content-center align-items-center" v-if="getCurrentPlayer.id == id && finished">
-        <a href="#" id='hide' @click.prevent="home" class="btn btn-primary form-control m-1" >{{score}}</a>
+    <div class="d-flex justify-content-center align-items-center" v-if="finished">
+        <a href="#" id='hide' class="btn btn-primary form-control m-1" aria-disabled="true">{{score}}</a>
         <!-- <a href="#" @click.prevent="cancel" class="btn btn-info form-control m-1" >Cancel</a> -->
     </div>
     <div class="d-flex justify-content-center align-items-center" v-if="getCurrentPlayer.id == id && !finished">
