@@ -1,7 +1,11 @@
 <template>
   <div class="LobbyPage d-flex flex-column align-items-center justify-content-center">
       <h1>LOBBY</h1>
-      <h3>{{ timer }}</h3>
+      <audio autoplay loop hidden>
+      <source src="../assets/kahoot-remix.mp3">
+                If you're reading this, audio isn't supported.
+      </audio>
+      <h3 @click.prevent="on">{{ timer }}</h3>
       <div class="board bg-light p-2 d-flex flex-wrap align-items-start justify-content-center" style="overflow: scroll;">
           <PlayerCard v-for="player in players" :key="player.id" :name="player.name" :status="player.status" :id="player.id"></PlayerCard>
       </div>
@@ -20,7 +24,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['DECREMENT_STARTTIMER'])
+    ...mapMutations(['DECREMENT_STARTTIMER', 'CHANGE_ISANSWER'])
   },
   components: {
     PlayerCard
@@ -36,7 +40,7 @@ export default {
   created () {
     socket.on('startGame', () => {
       this.$router.push('/game')
-      this.$store.commit('CHANGE_ISANSWER', false)
+      this.CHANGE_ISANSWER(false)
     })
     socket.on('startTimer', (time) => {
       this.DECREMENT_STARTTIMER(time)

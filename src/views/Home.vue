@@ -1,9 +1,14 @@
 <template>
-  <div class="container" v-if="gameOn">
+  <div class="container">
     <div class="row justify-content-center mt-5 mb-5">
+      <!-- <iframe src="../assets/kahoot-ori.mp3" type="audio/mp3" allow="autoplay" id="audio" style="display:none"></iframe> -->
+      <audio autoplay loop hidden>
+      <source src="../assets/kahoot-ori.mp3">
+                If you're reading this, audio isn't supported.
+      </audio>
       <img src="../assets/yahoot.png">
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" v-if="!getGameOn">
       <form class="col-4">
         <div class="form-group">
           <input v-model="username" type="text" class="form-control" id="username" placeholder="Creative Username" required autofocus>
@@ -11,6 +16,9 @@
         <div @click.prevent="login"><button tag="button" class="btn btn-danger">Enter Game</button></div>
         <!-- <button type="submit" >Enter Game</button> -->
       </form>
+    </div>
+    <div v-if="getGameOn">
+      <h2>SORRY GAME IS ALREADY STARTED, PLEASE WAIT.....</h2>
     </div>
   </div>
 </template>
@@ -24,12 +32,11 @@ export default {
   data () {
     return {
       username: '',
-      users: [],
-      gameOn: false
+      users: []
     }
   },
   methods: {
-    ...mapMutations(['CHANGE_CURRENTPLAYER', 'CHANGE_PLAYER']),
+    ...mapMutations(['CHANGE_CURRENTPLAYER', 'CHANGE_PLAYER', 'CHANGE_GAMEON']),
     login () {
       if(this.username && this.username != '') {
         localStorage.setItem('username', this.username)
@@ -45,12 +52,19 @@ export default {
         // mau lempar ke halaman apa?
         // this.$router.push('/lobby')
       }
+      this.CHANGE_CURRENTPLAYER(data)
+      socket.emit('user-connect', data)
+    }
+  },
+  computed: {
+    getGameOn() {
+      return this.$store.state.gameOn
     }
   },
   created () {
     socket.emit('gameOn')
     socket.on('gameOn', (data) => {
-      this.gameOn = data
+      this.CHANGE_GAMEON(data)
     })
     socket.on('user-connect', data => {
       this.users = data

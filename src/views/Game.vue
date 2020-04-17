@@ -1,8 +1,13 @@
 <template>
   <div class="container">
-    <div class="progress">
+    <div class="progress mt-5 mb-4">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" :style="progress"></div>
     </div>
+      <audio autoplay loop hidden>
+      <source src="../assets/theBest.mp3">
+                If you're reading this, audio isn't supported.
+      </audio>
+
     <question :quest="currentQuest" />
   </div>
 </template>
@@ -39,27 +44,5 @@ export default {
 </script>
 
 <style>
-#question {
-    background-color: red;
-}
 
-#answers {
-    background-color: blue;
-}
-
-#a {
-    background-color: yellow;
-}
-
-#b {
-    background-color: green;
-}
-
-#c {
-    background-color: orange;
-}
-
-#d {
-    background-color: aqua;
-}
 </style>
