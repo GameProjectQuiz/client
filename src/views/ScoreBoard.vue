@@ -35,9 +35,10 @@ export default {
     PlayerCard
   },
   created() {
-    if (!this.$store.state.currentPlayer) [
+    if (!this.$store.state.currentPlayer) {
         this.$router.push('/')
-    ]
+
+    }
       socket.on('clear-all-client', () => {
         this.CLEAR_ALL()
         this.$router.push('/')

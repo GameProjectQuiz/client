@@ -37,9 +37,11 @@ export default {
     }
   },
   created () {
-    if (!this.$store.state.currentPlayer) [
+    if (!this.$store.state.currentPlayer) {
       this.$router.push('/')
-    ]
+
+    }
+
     this.SET_STARTTIMER()
     socket.on('send-data', (data) => {
       this.CHANGE_QUESTION(data)
