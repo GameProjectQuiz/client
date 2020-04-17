@@ -1,9 +1,9 @@
 <template>
-  <div class="d-flex flex-column justify-content-between align-items-center" style="height:80vh">
+  <div class="d-flex flex-column justify-content-between align-items-center" style="height:75vh">
       <div class="row text-uppercase font-weight-bold board align-items-center justify-content-center" id="question">
           <h1>{{ quest.question }}</h1>
       </div>
-      <div class="row  align-self-stretch m-2" id="answers" v-if="!isAnswer">
+      <div class="row  align-self-stretch" id="answers" v-if="!isAnswer">
           <div class="col">
               <div class="row m-2" :id="quest.choices[0].id">
                   <button @click.prevent="answer(quest.choices[0].choice)" class="btn btn-lg btn-primary btn-block text-uppercase font-weight-bold">{{ quest.choices[0].choice }}</button>
@@ -46,7 +46,7 @@ export default {
     getTime () {
       return this.$store.state.startTimer
     },
-    isAnswer() {
+    isAnswer () {
       console.log(this.$store.state.isAnswer)
       return this.$store.state.isAnswer
     }
@@ -59,7 +59,7 @@ export default {
     console.log(this.quest)
     console.log(this.currentPlayer)
   },
-  beforeCreate() {
+  beforeCreate () {
     this.$store.commit('CHANGE_ISANSWER', false)
   }
 }
