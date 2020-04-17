@@ -33,12 +33,7 @@ export default {
       return this.$store.state.currentQuest
     },
     players () {
-<<<<<<< Updated upstream
-      return localStorage.username
-      // return this.$store.state.player[0].name
-=======
       return this.$store.state.currentPlayer.name
->>>>>>> Stashed changes
     }
   },
   created () {
