@@ -26,9 +26,11 @@
 
 <script>
 import socket from '../config/socket'
+import { mapMutations } from 'vuex'
 export default {
   props: ['quest'],
   methods: {
+    ...mapMutations(['CHANGE_FINISHED', 'CHANGE_PLAYER']),
     answer (choice) {
       socket.emit('answer', {
         ...this.currentPlayer,
@@ -40,6 +42,9 @@ export default {
     }
   },
   computed: {
+    getFinished() {
+      return this.$store.state.finished
+    },
     currentPlayer () {
       return this.$store.state.currentPlayer
     },
@@ -56,11 +61,18 @@ export default {
     }
   },
   created () {
-    console.log(this.quest)
-    console.log(this.currentPlayer)
+    socket.on('finalScore', (data) => {
+      this.CHANGE_PLAYER(data)
+    })
+    socket.on('finished', (data) => {
+      this.$router.push('/result')
+      this.CHANGE_FINISHED(data)
+    })
+
   },
   beforeCreate () {
     this.$store.commit('CHANGE_ISANSWER', false)
+    
   }
 }
 </script>

@@ -1,9 +1,10 @@
 <template>
   <div class="card m-2" style="width: 18.5rem; border-radius:10px;">
-  <div class="headerCard d-flex justify-content-center align-items-center" :style="cardHeaderReady">{{status}}</div>
+  <div class="headerCard d-flex justify-content-center align-items-center" :style="cardHeaderReady" v-if="!finished" >{{status}}</div>
   <div class="card-body">
     <h5 class="card-title">{{name}}</h5>
-    <div class="d-flex justify-content-center align-items-center" v-if="getCurrentPlayer.id == id">
+    <h5 class="card-title" v-if="finished">{{score}}</h5>
+    <div class="d-flex justify-content-center align-items-center" v-if="getCurrentPlayer.id == id && !finished">
         <a href="#" id='hide' @click.prevent="ready" class="btn btn-primary form-control m-1" >Ready</a>
         <!-- <a href="#" @click.prevent="cancel" class="btn btn-info form-control m-1" >Cancel</a> -->
     </div>
@@ -15,7 +16,7 @@
 import { mapMutations } from 'vuex'
 export default {
   name: 'PlayerCard',
-  props: ['name', 'status', 'id'],
+  props: ['name', 'status', 'id', 'finished', 'score'],
   data () {
     return {
       isHidden: false
