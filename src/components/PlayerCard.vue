@@ -44,7 +44,7 @@ export default {
         return {
           width: '18.4rem',
           height: '50px',
-          'background-color': 'green',
+          'background-color': '#5cb85c',
           color: 'white',
           'font-size': '24px',
           'font-weight': '900',

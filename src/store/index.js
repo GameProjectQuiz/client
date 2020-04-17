@@ -51,7 +51,6 @@ export default new Vuex.Store({
     CHANGE_FINISHED (state, payload) {
       state.finished = payload
     }
-    
   },
   actions: {
   },

@@ -42,7 +42,7 @@ export default {
     }
   },
   computed: {
-    getFinished() {
+    getFinished () {
       return this.$store.state.finished
     },
     currentPlayer () {
@@ -68,11 +68,9 @@ export default {
       this.$router.push('/result')
       this.CHANGE_FINISHED(data)
     })
-
   },
   beforeCreate () {
     this.$store.commit('CHANGE_ISANSWER', false)
-    
   }
 }
 </script>

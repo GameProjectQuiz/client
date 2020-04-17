@@ -31,6 +31,10 @@ export default {
     },
     currentQuest () {
       return this.$store.state.currentQuest
+    },
+    getCurrentPlayer () {
+      console.log(this.$store.state.currentPlayer)
+      return this.$store.state.currentPlayer
     }
   },
   created () {

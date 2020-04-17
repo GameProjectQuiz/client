@@ -6,7 +6,7 @@
                 If you're reading this, audio isn't supported.
       </audio>
       <h3 @click.prevent="on">{{ timer }}</h3>
-      <div class="board bg-light p-2 d-flex flex-wrap align-items-start justify-content-center" style="overflow: scroll;">
+      <div class="board bg-light p-2 d-flex flex-wrap align-items-start justify-content-center mb-4" style="overflow: scroll;">
           <PlayerCard v-for="player in players" :key="player.id" :name="player.name" :status="player.status" :id="player.id"></PlayerCard>
       </div>
   </div>
