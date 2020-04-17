@@ -24,7 +24,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['DECREMENT_STARTTIMER'])
+    ...mapMutations(['DECREMENT_STARTTIMER', 'CHANGE_ISANSWER'])
   },
   components: {
     PlayerCard
@@ -40,7 +40,7 @@ export default {
   created () {
     socket.on('startGame', () => {
       this.$router.push('/game')
-      this.$store.commit('CHANGE_ISANSWER', false)
+      this.CHANGE_ISANSWER(false)
     })
     socket.on('startTimer', (time) => {
       this.DECREMENT_STARTTIMER(time)
