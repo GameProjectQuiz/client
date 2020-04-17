@@ -38,9 +38,10 @@ export default {
     }
   },
   created () {
-    if (!this.$store.state.currentPlayer) [
-      this.$router.push('/')
-    ]
+   if (!this.$store.state.currentPlayer) {
+        this.$router.push('/')
+
+    }
     socket.on('startGame', () => {
       this.$router.push('/game')
       this.CHANGE_ISANSWER(false)
