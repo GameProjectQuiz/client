@@ -8,7 +8,7 @@
       </audio>
       <h3>{{ timer }}</h3>
       <div class="board bg-light p-2 d-flex flex-wrap align-items-start justify-content-center mb-4" style="overflow: scroll;">
-          <PlayerCard v-for="player in players" :key="player.id" :name="player.name" :status="player.status" :id="player.id" finished=true :score="player.score"></PlayerCard>
+          <PlayerCard v-for="(player, index) in players" :key="player.id" :name="player.name" :status="player.status" :id="player.id" finished=true :score="player.score" :rank="index"></PlayerCard>
       </div>
   </div>
 </template>
