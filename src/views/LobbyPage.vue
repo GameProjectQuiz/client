@@ -39,14 +39,13 @@ export default {
   },
   created () {
     socket.emit('gameOn')
-     socket.on('gameOn', (data) => {
+    socket.on('gameOn', (data) => {
       if (data) {
         this.$router.push('/')
       }
     })
-   if (!this.$store.state.currentPlayer) {
-        this.$router.push('/')
-
+    if (!this.$store.state.currentPlayer) {
+      this.$router.push('/')
     }
     socket.on('startGame', () => {
       this.$router.push('/game')

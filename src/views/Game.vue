@@ -45,7 +45,6 @@ export default {
     })
     if (!this.$store.state.currentPlayer) {
       this.$router.push('/')
-
     }
 
     this.SET_STARTTIMER()

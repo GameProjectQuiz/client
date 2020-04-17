@@ -22,8 +22,8 @@ export default {
   methods: {
     ...mapMutations(['CLEAR_ALL']),
     clearing () {
-        socket.emit('clear-all-client')
-        // localStorage.removeItem('username')
+      socket.emit('clear-all-client')
+      // localStorage.removeItem('username')
     }
   },
   computed: {
@@ -34,22 +34,20 @@ export default {
   components: {
     PlayerCard
   },
-  created() {
-      socket.emit('gameOn')
-     socket.on('gameOn', (data) => {
+  created () {
+    socket.emit('gameOn')
+    socket.on('gameOn', (data) => {
       if (data) {
         this.$router.push('/')
       }
     })
     if (!this.$store.state.currentPlayer) {
-        this.$router.push('/')
-
+      this.$router.push('/')
     }
-      socket.on('clear-all-client', () => {
-        this.CLEAR_ALL()
-        this.$router.push('/')
-
-      })
+    socket.on('clear-all-client', () => {
+      this.CLEAR_ALL()
+      this.$router.push('/')
+    })
   }
 }
 </script>
