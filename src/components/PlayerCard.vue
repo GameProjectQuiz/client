@@ -8,7 +8,7 @@
         <a href="#" id='hide' class="btn btn-primary form-control m-1" aria-disabled="true">{{score}}</a>
         <!-- <a href="#" @click.prevent="cancel" class="btn btn-info form-control m-1" >Cancel</a> -->
     </div>
-    <div class="d-flex justify-content-center align-items-center" v-if="getCurrentPlayer.id == id && !finished">
+    <div class="d-flex justify-content-center align-items-center" v-if="getCurrentPlayer.id == id && !finished && !checkStatus">
         <a href="#" id='hide' @click.prevent="ready" class="btn btn-primary form-control m-1" >Ready</a>
         <!-- <a href="#" @click.prevent="cancel" class="btn btn-info form-control m-1" >Cancel</a> -->
     </div>
@@ -33,7 +33,7 @@ export default {
       this.CHANGE_FINISHED(false)
     },
     ready () {
-      document.getElementById('hide').style.display = 'none'
+      // document.getElementById('hide').style.display = 'none'
       this.CHANGE_STATUS({
         id: this.id,
         status: 'Ready'
@@ -47,6 +47,20 @@ export default {
     }
   },
   computed: {
+    checkStatus() {
+      let status = true
+      this.$store.state.player.forEach(el => {
+        if (el.id === this.id) {
+          if (el.status === 'Waiting' ) {
+            status = false
+            return
+          } else {
+            status = true
+          }
+        }
+      })
+      return status
+    },
     ranking () {
       return `#${this.rank + 1}`
     },
