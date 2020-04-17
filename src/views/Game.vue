@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-      <button class="btn btn-lg btn-block btn-secondary mt-2" >NAME: {{  }}</button>
-      <button class="btn btn-lg btn-block btn-dark pointer mt-2">SCORE: {{  }}</button>
+      <button class="btn btn-lg btn-block btn-secondary mt-2 font-weight-bold" >PLAYER: {{ players }}</button>
+      <!-- <button class="btn btn-lg btn-block btn-dark pointer mt-2">SCORE: {{  }}</button> -->
     <div class="progress mt-2 mb-2">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" :style="progress"></div>
     </div>
@@ -32,9 +32,8 @@ export default {
     currentQuest () {
       return this.$store.state.currentQuest
     },
-    getCurrentPlayer () {
-      console.log(this.$store.state.currentPlayer)
-      return this.$store.state.currentPlayer
+    players () {
+      return this.$store.state.player[0].name
     }
   },
   created () {
