@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="width: 18.5rem;">
+  <div class="card m-2" style="width: 18.5rem; border-radius:10px;">
   <div class="headerCard d-flex justify-content-center align-items-center" :style="cardHeaderReady" v-if="!finished" >{{status}}</div>
   <div class="card-body">
     <h5 class="card-title">{{name}}</h5>
@@ -47,7 +47,8 @@ export default {
           'background-color': 'green',
           color: 'white',
           'font-size': '24px',
-          'font-weight': '900'
+          'font-weight': '900',
+          'border-radius': '10px 10px 0 0'
         }
       } else {
         return {
@@ -56,7 +57,8 @@ export default {
           'background-color': 'grey',
           color: 'white',
           'font-size': '24px',
-          'font-weight': '900'
+          'font-weight': '900',
+          'border-radius': '10px 10px 0 0'
         }
       }
     },

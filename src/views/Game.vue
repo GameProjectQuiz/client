@@ -1,13 +1,14 @@
 <template>
   <div class="container">
-    <div class="progress mt-5 mb-4">
+      <button class="btn btn-lg btn-block btn-secondary mt-2" >NAME: {{  }}</button>
+      <button class="btn btn-lg btn-block btn-dark pointer mt-2">SCORE: {{  }}</button>
+    <div class="progress mt-2 mb-2">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" :style="progress"></div>
     </div>
       <audio autoplay loop hidden>
       <source src="../assets/theBest.mp3">
                 If you're reading this, audio isn't supported.
       </audio>
-
     <question :quest="currentQuest" />
   </div>
 </template>
@@ -44,5 +45,7 @@ export default {
 </script>
 
 <style>
-
+.pointer {
+  cursor: pointer;
+}
 </style>

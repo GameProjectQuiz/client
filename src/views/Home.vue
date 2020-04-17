@@ -38,7 +38,7 @@ export default {
   methods: {
     ...mapMutations(['CHANGE_CURRENTPLAYER', 'CHANGE_PLAYER', 'CHANGE_GAMEON']),
     login () {
-      if(this.username && this.username != '') {
+      if (this.username && this.username !== '') {
         localStorage.setItem('username', this.username)
         this.$router.push('/lobby')
         const data = {
@@ -57,7 +57,7 @@ export default {
     }
   },
   computed: {
-    getGameOn() {
+    getGameOn () {
       return this.$store.state.gameOn
     }
   },

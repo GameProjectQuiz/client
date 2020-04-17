@@ -45,7 +45,7 @@ export default {
     socket.on('startTimer', (time) => {
       this.DECREMENT_STARTTIMER(time)
     })
-    if(!localStorage.username){
+    if (!localStorage.username) {
       this.$router.push('/')
     }
   }
