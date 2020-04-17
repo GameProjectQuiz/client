@@ -38,6 +38,12 @@ export default {
     }
   },
   created () {
+    socket.emit('gameOn')
+     socket.on('gameOn', (data) => {
+      if (data) {
+        this.$router.push('/')
+      }
+    })
    if (!this.$store.state.currentPlayer) {
         this.$router.push('/')
 
