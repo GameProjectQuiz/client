@@ -8,7 +8,7 @@
         <div class="form-group">
           <input v-model="username" type="text" class="form-control" id="username" placeholder="Creative Username" required autofocus>
         </div>
-        <div @click.prevent="login"><router-link to="/lobby" tag="button" class="btn btn-danger">Enter Game</router-link></div>
+        <div @click.prevent="login"><button tag="button" class="btn btn-danger">Enter Game</button></div>
         <!-- <button type="submit" >Enter Game</button> -->
       </form>
     </div>
@@ -31,17 +31,20 @@ export default {
   methods: {
     ...mapMutations(['CHANGE_CURRENTPLAYER', 'CHANGE_PLAYER']),
     login () {
-      localStorage.setItem('username', this.username)
-      const data = {
-        id: `${this.username}-${new Date().toISOString()}`,
-        name: this.username,
-        status: 'Waiting',
-        score: 0
+      if(this.username && this.username != '') {
+        localStorage.setItem('username', this.username)
+        this.$router.push('/lobby')
+        const data = {
+          id: `${this.username}-${new Date().toISOString()}`,
+          name: this.username,
+          status: 'Waiting',
+          score: 0
+        }
+        this.CHANGE_CURRENTPLAYER(data)
+        socket.emit('user-connect', data)
+        // mau lempar ke halaman apa?
+        // this.$router.push('/lobby')
       }
-      this.CHANGE_CURRENTPLAYER(data)
-      socket.emit('user-connect', data)
-      // mau lempar ke halaman apa?
-      // this.$router.push('/lobby')
     }
   },
   created () {
@@ -55,6 +58,7 @@ export default {
     socket.on('stateNewPlayer', (data) => {
       this.CHANGE_PLAYER(data)
     })
+    localStorage.clear()
   }
 }
 </script>

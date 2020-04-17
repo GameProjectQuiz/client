@@ -38,7 +38,7 @@ export default new Vuex.Store({
     },
     CHANGE_QUESTION (state, payload) {
       state.currentQuest = payload
-      // state.isAnswer = true
+      state.isAnswer = false
     },
     CHANGE_ISANSWER (state,payload) {
       state.isAnswer = payload
