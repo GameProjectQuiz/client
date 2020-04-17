@@ -1,7 +1,7 @@
 <template>
    <div class="LobbyPage d-flex flex-column align-items-center justify-content-center">
       <h1>RESULT</h1>
-      <a href="/" class="btn btn-lg btn-danger font-weight-bold">PLAY AGAIN</a>
+      <button @click.prevent="clearing" class="btn btn-lg btn-danger font-weight-bold">PLAY AGAIN</button>
       <audio autoplay loop hidden>
       <source src="../assets/kahoot-ori.mp3">
                 If you're reading this, audio isn't supported.
@@ -20,6 +20,10 @@ import { mapMutations } from 'vuex'
 export default {
   name: 'ScoreBoard',
   methods: {
+    clearing () {
+      localStorage.removeItem('username')
+      this.$router.push('/')
+    }
   },
   computed: {
     players () {
