@@ -33,7 +33,8 @@ export default {
       return this.$store.state.currentQuest
     },
     players () {
-      return this.$store.state.player[0].name
+      return localStorage.username
+      // return this.$store.state.player[0].name
     }
   },
   created () {
