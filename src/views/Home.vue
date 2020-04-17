@@ -36,7 +36,7 @@ export default {
         id: `${this.username}-${new Date().toISOString()}`,
         name: this.username,
         status: 'Waiting',
-        jawaban: []
+        score: 0
       }
       this.CHANGE_CURRENTPLAYER(data)
       socket.emit('user-connect', data)
