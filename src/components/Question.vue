@@ -12,7 +12,7 @@
                   <button @click.prevent="answer(quest.choices[1].choice)" class="btn btn-lg btn-success btn-block text-uppercase font-weight-bold">{{ quest.choices[1].choice }}</button>
               </div>
           </div>
-          <div class="col w-100">
+          <div class="col">
               <div class="row m-2" :id="quest.choices[2].id">
                   <button @click.prevent="answer(quest.choices[2].choice)" class="btn btn-lg btn-danger btn-block text-uppercase font-weight-bold">{{ quest.choices[2].choice }}</button>
               </div>
@@ -21,6 +21,10 @@
               </div>
           </div>
       </div>
+      <div class="row  align-self-stretch" id="answers" v-else>
+        <button class="btn btn-lg btn-primary btn-block text-uppercase font-weight-bold">Please wait for others...</button>  
+      </div>
+      
   </div>
 </template>
 
@@ -54,10 +58,6 @@ export default {
     isAnswer () {
       console.log(this.$store.state.isAnswer)
       return this.$store.state.isAnswer
-    }
-  },
-  data () {
-    return {
     }
   },
   created () {
