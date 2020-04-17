@@ -64,6 +64,7 @@ export default {
   created () {
     socket.emit('gameOn')
     socket.on('gameOn', (data) => {
+      console.log('hasrunya ganti', data)
       this.CHANGE_GAMEON(data)
     })
     socket.on('user-connect', data => {
